@@ -9,7 +9,7 @@ This idea sounds easy at first since:
 
 How do we serve Apps? There are several ways to deploy an App, including `.dmg` and `.pkg` files, but for now let's host our App in an HTTP server:
 ```shell
-zip -q -r ./evil.zip ./evil.app
+zip -q -r ./Calculator.zip ./Calculator.app
 python -m http.server 80
 ```
 
