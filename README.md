@@ -37,8 +37,13 @@ In our case, the relevant exended attribute is called `com.apple.quarantine`:
 
 ```shell
 jbo@McJbo ~ % xattr -l ~/Downloads/Calculator.app
-com.apple.quarantine: 0083;62e09bd1;Safari;37A655F6-6704-42E5-AA69-A0169992691A`
+com.apple.quarantine: 0083;62e09bd1;Safari;37A655F6-6704-42E5-AA69-A0169992691A
 jbo@McJbo ~ %
 ```
 
+The format of the contents of the `com.apple.quarantine` extended attribute is:
+- Flags (hexadecimal form). `0083` means Gatekeeper checks should be enforced on this file.
+- Timestamp (hexadecimal form), in [UNIX epoch](https://www.epochconverter.com/) units.
+- The downloading entity (`Safari` in our case).
+- A UUID that might later be referenced at a "Quarantine database".
 
