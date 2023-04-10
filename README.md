@@ -29,8 +29,16 @@ The motivation behind those policies is easy to understand:
 - Historically, malware authors simply purchased an Apple Developer license; while not free, they are affordable ($99 currently).
 - Notarization is *not bulletproof* but stops obvious malware from spreading.
 
+## Diving into the details
+Safari and other macOS software use the API []() to download files. This makes an `extended attribute` to be saved for the downloaded file.  
+Extended attributes are a way to save metadata, and are common in various filesystems, including the macOS `APFS` and `HFS+`.  
+You can think of extended attributes as a dictionary (key --> data) for each file. They can be viewed and manipulated with the `xattr` command.  
+In our case, the relevant exended attribute is called `com.apple.quarantine`:
 
-
-
+```shell
+jbo@McJbo ~ % xattr -l ~/Downloads/Calculator.app
+com.apple.quarantine: 0083;62e09bd1;Safari;37A655F6-6704-42E5-AA69-A0169992691A`
+jbo@McJbo ~ %
+```
 
 
