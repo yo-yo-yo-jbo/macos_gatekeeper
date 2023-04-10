@@ -49,3 +49,23 @@ The format of the contents of the `com.apple.quarantine` extended attribute is:
 
 I will not be talking about the "Quarantine database" I mentioned since currently (macOS 13.3) Apple has completely broken that database, but for completeness I will mention there is a SQLite database called `QuarantineEventsV2` that used to contain all your downloads information. You can read more about it [here](https://www.engadget.com/2012-02-14-mac-os-xs-quarantineevents-keeps-a-log-of-all-your-downloads.html) (again - not up to date).  
 I, at least, see Gatekeeper as equvalent to the `Windows Mark-of-the-Web` (MoTW). Both are persistently saved in as file metadata (Windows uses NTFS [Alternate Data Streams](https://owasp.org/www-community/attacks/Windows_alternate_data_stream)) and used to later enforce policies (the ones on Windows involve [SmartScreen](https://support.microsoft.com/en-us/microsoft-edge/how-can-smartscreen-help-protect-me-in-microsoft-edge-1c9a874a-6826-be5e-45b1-67fa445a74c8), [Application Guard](https://learn.microsoft.com/en-us/windows/security/threat-protection/microsoft-defender-application-guard/md-app-guard-overview) and other technologies).
+
+## What do we do about it?
+As an attacker, you might want to bypass Gatekeeper. Well, if you manage to do it it's an actual vulnerability!  
+Those kind of vulnerabilities are fun to discover, and you can read one I [responsibly disclosed to Apple](https://www.microsoft.com/en-us/security/blog/2022/12/19/gatekeepers-achilles-heel-unearthing-a-macos-vulnerability/) in 2022.  
+However, there are some techniques you could use that "avoid" Gatekeeper without actually bypassing it with a vulnerability. Here are a few:
+- Using a filesystem that does not support extended attributes. For example, USB drives that are formatted with `FAT32`, `ExFAT` or even `NTFS` will not get Gatekeeper bypass enforcement. Also, network drives, obviously.
+- Using other methods to download files. Those include `curl`, `wget` and others - they simply download files without using Apple's API.
+- Removing the extended attribute. Can be done with `xattr -d com.apple.quarantine <file>`.
+- Disabling Gatekeeper completely. Must be done with root privileges: `sudo spctl --master-disable`.
+
+Note all of these require gaining code execution on the box to begin with or *extensive* social engineering.  
+I think it's fair to say Apple's Gatekeeper does stop attackers, or at least commodity malware.
+
+## Summary
+This was a short blogpost that describes one aspect of macOS security and the first line of defense (I guess).  
+We will discuss other technologies in the next blogposts in the series.
+
+Stay tuned!
+
+Jonathan Bar Or
