@@ -17,3 +17,20 @@ Unfortunately (or fortunately, depending on your point of view), if will not wor
 ![My fake Calculator App is blocked](/fake_calc.png)
 
 This is the works of the `macOS Gatekeeper`, which is what I'd like to introduce today.
+
+## Gatekeeper - motivation and high-level description
+The macOS Gatekeeper has been around for years now, but its purpose stayed the same - stop the *initial execution* of untrusted code by enforcing certain policies.  
+Those policies are currently quite simple, in highlevel at least:
+1. The App is well-signed.
+2. The App is further notarized by Apple.
+
+Both of those requirements are code signing requirements - the former means that a developer had to get an Apple Developer license and sign the App with his Team ID, while the latter means that the App was submitted to Apple, and by means of strict checks, it got signed ("notarized").  
+The motivation behind those policies is easy to understand:
+- Historically, malware authors simply purchased an Apple Developer license; while not free, they are affordable ($99 currently).
+- Notarization is *not bulletproof* but stops obvious malware from spreading.
+
+
+
+
+
+
