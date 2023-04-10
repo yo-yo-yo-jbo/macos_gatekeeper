@@ -13,6 +13,7 @@ zip -q -r ./Calculator.zip ./Calculator.app
 python -m http.server 80
 ```
 
-Unfortunately (or fortunately, depending on your point of view), if will not work... Downloading works, extracting works, but double clicking is disabled, with *no "ignore" option*:
+Unfortunately (or fortunately, depending on your point of view), if will not work... Downloading works, extracting works, but double clicking is disabled, with *no "ignore" option*:  
 ![My fake Calculator App is blocked](/fake_calc.png)
 
+This is the works of the `macOS Gatekeeper`, which is what I'd like to introduce today.
