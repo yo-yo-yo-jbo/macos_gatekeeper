@@ -7,4 +7,11 @@ This idea sounds easy at first since:
 - The macOS UI completely hides the `.app` extension of the directory.
 - By default, Safari (the browser) automatically extracts archives, so a directory structure is extracted (and looks like one file).
 
-How do we serve Apps? There are several ways to deploy an App, including `.dmg` and `.pkg` files, but for now let's host our App
+How do we serve Apps? There are several ways to deploy an App, including `.dmg` and `.pkg` files, but for now let's host our App in an HTTP server:
+```shell
+zip -q -r ./evil.zip ./evil.app
+python -m http.server 80
+```
+
+Unfortunately (or fortunately, depending on your point of view), if will not work... Downloading works, extracting works, but double clicking is disabled, with *no "ignore" option*:
+
