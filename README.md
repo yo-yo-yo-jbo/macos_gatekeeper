@@ -1,6 +1,6 @@
 # Introduction to macOS - Gatekeeper
 
-In the last blogpost I discussed [how Apps are structures](https://github.com/yo-yo-yo-jbo/macos_app_structure) in a nutshell.  
+In the last blogpost I discussed [how Apps are structured](https://github.com/yo-yo-yo-jbo/macos_app_structure) in a nutshell.  
 At first it seems very promising to an attacker - let's package our payload in a nice directory structure and send it to our target!  
 This idea sounds easy at first since:
 - We fully control the App's Icon, we can make it seem like a document or a legitiamte App.  
@@ -13,7 +13,7 @@ zip -q -r ./Calculator.zip ./Calculator.app
 python -m http.server 80
 ```
 
-Unfortunately (or fortunately, depending on your point of view), if will not work... Downloading works, extracting works, but double clicking is disabled, with *no "ignore" option*:  
+Unfortunately (or fortunately, depending on your point of view), it will not work... Downloading works, extracting works, but double clicking is disabled, with *no "ignore" option*:  
 ![My fake Calculator App is blocked](/fake_calc.png)
 
 This is the works of the `macOS Gatekeeper`, which is what I'd like to introduce today.
